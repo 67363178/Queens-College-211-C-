@@ -1,0 +1,9 @@
+
+Hw3 3.1
+n=(2n+1)^2
+
+n= 4n^2+2n+1 (+1 shows that the number can only be an odd integer because *below* a even number +1 is an odd number)
+
+2(2n^2+2n) (2 times any number is a even number)
+
+Therefore,  the last 2 digits of a perfect square can't be both odd integer

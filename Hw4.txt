@@ -1,0 +1,38 @@
+# include <iostream>
+# include <cstdlib>
+using namespace std;
+int main(){
+
+int teams, runners, rt;
+char tnames[26], Letter= 'A';
+double total;
+
+cout<<"The number of teams ";
+cin>>teams;
+
+cout<<"How many runners? ";
+cin>>runners;
+
+rt=teams*runners; //number of place
+int score[rt];
+for(int i=0; i<rt; i++){
+    score[i]=i+1;
+}
+for(int i=0; i<rt; i++){
+    cout<<score[i];
+}
+
+
+for(int i=0; i<teams; i++){
+tnames[i]= Letter+i;
+}
+
+
+
+
+cout<<endl<<"The number of teams: "<<teams<<endl<<"The number of runners on a team"<<runners<<endl;
+for(int i=0; i<teams; i++){
+cout<<"The names of the teams: "<<tnames[i]<<endl;
+}
+
+}

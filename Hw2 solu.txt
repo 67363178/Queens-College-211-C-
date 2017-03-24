@@ -1,0 +1,36 @@
+
+bool equivalent(int a[],int b[],int n){
+    int q=0;
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            if(a[i]==b[j]){
+                int c = i;
+                int v = j;
+                for(int p =0;p<n;p++){
+                    if(a[c]!=b[v]){
+                        q=0;
+                        break;
+                    } else {
+                        q++;
+                    }
+                    if(c+1>=n){
+                        c=0;
+                    } else{
+                        c++;
+                    }
+                    if((v+1)>=n){
+                        v=0;
+                    } else {
+                        v++;
+                    }
+                    
+                }
+                if(q==n){
+                    return true;
+                }
+            }
+            
+       }
+  }
+    return false;
+}

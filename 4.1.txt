@@ -1,0 +1,91 @@
+# include <iostream>
+# include <cstdlib>
+using namespace std;
+int main(){
+
+int teams, runners, rt;
+char tnames[26], Letter= 'A';
+double total=0;
+
+cout<<"The number of teams ";
+cin>>teams;
+
+cout<<"How many runners? ";
+cin>>runners;
+
+rt=teams*runners; //number of place
+int score[rt];
+for(int i=0; i<rt; i++){
+    score[i]=i+1;
+}
+
+
+
+for(int i=0; i<teams; i++){ //Teams Letter
+tnames[i]= Letter+i;
+}
+
+int array1[teams],temp=0;
+string ans;
+
+int  check [rt];// check if there are two runners have the same score
+int tempA[runners];
+
+        for(int q=0; q<teams; q++){
+    cout<<"Enter the scores for team"<<tnames[q]<<"(Enter 0 if there is no one left)"<<endl;
+
+for(int i=0; i<runners; i++){
+cin>>temp;
+tempA[i]=temp;
+total=total+temp;
+
+    if(temp==0) {
+            cout<<"There must have the same runners on both side. Please check again. ";
+            return 0;
+    }
+
+
+}
+        array1[q]=total;
+        total=0;
+        cout<<"Total score is "<<array1[q]<<endl;
+
+        }
+
+double finalscores;
+double array2[teams];
+for(int i=0; i<teams; i++){
+    finalscores=array1[i]/(double)runners;
+    array2[i]=finalscores;
+    finalscores=0;
+
+}
+
+//Output
+cout<<endl<<"The number of teams: "<<teams<<endl<<"The number of runners on a team: "<<runners<<endl;
+for(int i=0; i<teams; i++){
+cout<<"The names of the teams: "<<tnames[i]<<endl;
+}
+cout<<"Team           Score"<<endl;
+for(int i=0; i<teams; i++){
+cout<<tnames[i]<<"               "<<array2[i]<<endl;
+}
+
+//Winning team
+char ansf;
+double sec;
+for(int i=0; i<teams; i++){
+    if(array2[i]<array2[i+1]){
+        ansf=tnames[i];
+        sec=array2[i];
+    }
+
+}
+
+   cout<<"The winning team is team "<<ansf<<" with a score of "<<sec;
+
+
+
+
+
+}

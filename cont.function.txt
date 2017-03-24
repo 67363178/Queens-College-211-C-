@@ -1,0 +1,101 @@
+#include <iostream>
+using namespace std;
+int v[2] = { 0,0 };
+
+//Find the GCD function, return int;
+int gcd(int a, int b) {
+	int c;
+	while (b != 0) {
+		c = b;
+		b = a % b;
+		a = c;
+	}
+	return c;
+}
+
+// Function takes an array of integers, return a double value of a Continued Fraction
+double toValue(int f[],int n) {
+	double temp=f[n-1];
+	for (int i = n-1; i > 0; i--) {
+		temp = f[i - 1] + 1 / temp;
+		//cout << temp << endl;
+	}
+	return temp;
+}
+
+// Function takes an array of integers, return a 2-element integer array. I
+// to represent the Continued Fraction in a regular fraction.
+int* toFraction(int f[],int n) {
+
+	int p = 0, q = 0, temp;
+	for (int i = n - 2; i >= 0; i--) {
+		if (i == n - 2) {
+			q = f[i+1];
+			p = f[i] * q + 1;
+		}
+		else {
+			temp = p;
+			p = q;
+			q = temp;
+			p = f[i] * q + p;
+		}
+	}
+	temp = gcd(p, q);	
+	if (temp != 1) {
+		p = p / temp;
+		q = q / temp;
+	}
+	v[0] = p;
+	v[1] = q;
+	return v;
+}
+
+// Function takes an array of integers, return a 2-element integer array. 
+// to represent the Continued Fraction in a regular fraction. (by Recursive)
+int* toFractionREC(int f[], int n) {
+	static int i = 0;
+	int *p;
+
+	if (n-2 == 0) {
+		v[0] = f[i]*f[i+1]+1;
+		v[1] = f[i+1];
+		return v;
+	}
+	i++;
+	p=toFractionREC(f, n-1);
+	i--;
+	
+	int temp = p[0];
+	p[0] = p[1];
+	p[1] = temp;
+
+	cout << i << " : " << p[0] << "/" << p[1] << endl;
+	p[0] = f[i] * p[1] + p[0];
+
+
+	if (i == 0) {
+		int c = gcd(p[0], p[1]);
+		if (c!= 1) {
+			p[0] = p[0] / c;
+			p[1] = p[1] / c;
+		}
+	}
+
+	return p;
+}
+
+
+int main() {
+	int i[10] = { 3, 7, 15, 1, 292, 1, 1, 1, 2, 1, };
+
+	double v = toValue(i, 10);
+	cout << v << endl;
+
+	int *p = toFraction(i, 10);
+	cout << endl << p[0] << "/" << p[1] << " = " << ((double)p[0] / (double)p[1]) << endl << endl;
+
+	int *q = toFractionREC(i, 10);
+	cout << endl << q[0] << "/" << q[1] << " = " << ((double)q[0] / (double)q[1]) << endl;
+
+	return 0;
+}
